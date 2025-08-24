@@ -10,7 +10,7 @@ class EloquentProveedor
 {
     public function all()
     {
-        return Proveedor::all();
+        return Proveedor::orderByDesc('id')->paginate(10);
     }
 
     public function find($id)
@@ -44,8 +44,8 @@ class EloquentProveedor
     {
         $term = trim((string)$term);
         if ($term === '') {
-            return Proveedor::all();
+            return Proveedor::orderByDesc('id')->paginate(10);
         }
-        return Proveedor::where('ruc', 'like', $term . '%')->get();
+        return Proveedor::where('ruc', 'like', $term . '%')->orderByDesc('id')->paginate(10);
     }
 }

@@ -12,8 +12,10 @@ class ProductoSeeder extends Seeder
         $faker = Faker::create('es_PE');
         for ($i = 0; $i < 10; $i++) {
             Producto::create([
+                'codigo' => $faker->unique()->numerify('P-#####'),
                 'nombre' => $faker->word,
-                'descripcion' => $faker->sentence,
+                'categoria' => $faker->word,
+                'proveedor' => $faker->company,
                 'precio' => $faker->randomFloat(2, 10, 500),
                 'stock' => $faker->numberBetween(1, 100),
             ]);

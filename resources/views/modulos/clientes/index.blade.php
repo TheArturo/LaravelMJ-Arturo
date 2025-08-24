@@ -120,6 +120,10 @@
                         </tbody>
                     </table>
                 </div>
+                {{-- Paginación --}}
+                <div style="margin-top:24px; text-align:center;">
+                    {{ $clientes->links() }}
+                </div>
             </div>
             {{-- =============== FIN TABLA DE CLIENTES =============== --}}
         </div>

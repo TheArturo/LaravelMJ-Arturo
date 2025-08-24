@@ -111,6 +111,10 @@
                         </tbody>
                     </table>
                 </div>
+                {{-- Paginación --}}
+                <div style="margin-top:24px; text-align:center;">
+                    {{ $proveedores->links() }}
+                </div>
             </div>
             {{-- =============== FIN TABLA DE PROVEEDORES =============== --}}
         </div>
