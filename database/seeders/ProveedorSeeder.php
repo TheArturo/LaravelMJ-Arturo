@@ -1,12 +1,23 @@
 <?php
 namespace Database\Seeders;
-use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
-class ProveedorSeeder extends Seeder {
-    public function run() {
-        DB::table('proveedores')->insert([
-            ['ruc' => '2012345678', 'nombres' => 'Proveedor 1', 'telefono' => '999999999', 'direccion' => 'Av. Siempre Viva', 'razon_social' => 'Empresa Uno'],
-        ]);
+use Illuminate\Database\Seeder;
+use Src\Proveedor\Models\Proveedor;
+use Faker\Factory as Faker;
+
+class ProveedorSeeder extends Seeder
+{
+    public function run(): void
+    {
+        $faker = Faker::create('es_PE');
+        for ($i = 0; $i < 10; $i++) {
+            Proveedor::create([
+                'ruc' => $faker->unique()->numerify('20########'),
+                'nombres' => $faker->company,
+                'telefono' => $faker->unique()->numerify('9########'),
+                'direccion' => $faker->address,
+                'razon_social' => $faker->catchPhrase,
+            ]);
+        }
     }
 }

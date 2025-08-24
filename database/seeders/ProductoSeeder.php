@@ -1,14 +1,22 @@
 <?php
 namespace Database\Seeders;
-use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
-class ProductoSeeder extends Seeder {
-    public function run() {
-        DB::table('productos')->insert([
-            ['codigo' => 'P00001', 'nombre' => 'Mesa de madera de Mesa', 'categoria' => 'Mesa', 'proveedor' => 'Mesa', 'precio' => 400.0, 'stock' => 2],
-            ['codigo' => 'P00002', 'nombre' => 'Prueba', 'categoria' => 'Decoracion', 'proveedor' => 'Decoracion', 'precio' => 22.0, 'stock' => 2],
-            ['codigo' => 'P00003', 'nombre' => 'prueba2', 'categoria' => 'Silla', 'proveedor' => 'Silla', 'precio' => 1000.0, 'stock' => 6],
-        ]);
+use Illuminate\Database\Seeder;
+use Src\Producto\Models\Producto;
+use Faker\Factory as Faker;
+
+class ProductoSeeder extends Seeder
+{
+    public function run(): void
+    {
+        $faker = Faker::create('es_PE');
+        for ($i = 0; $i < 10; $i++) {
+            Producto::create([
+                'nombre' => $faker->word,
+                'descripcion' => $faker->sentence,
+                'precio' => $faker->randomFloat(2, 10, 500),
+                'stock' => $faker->numberBetween(1, 100),
+            ]);
+        }
     }
 }
