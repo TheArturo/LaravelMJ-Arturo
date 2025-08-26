@@ -9,8 +9,8 @@ return new class extends Migration {
             $table->id();
             $table->string('codigo', 20)->unique();
             $table->string('nombre');
-            $table->string('categoria');
-            $table->string('proveedor');
+            $table->unsignedBigInteger('categoria_id')->nullable();
+            $table->unsignedBigInteger('proveedor_id')->nullable();
             $table->decimal('precio', 10, 2);
             $table->integer('stock');
             $table->timestamps();
