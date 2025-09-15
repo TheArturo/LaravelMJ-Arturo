@@ -1,73 +1,76 @@
+@vite('resources/css/categorias.css')
 <x-layouts.app :title="'Categorías'">
-    <div style="min-height:100vh; background:#222; display:flex; align-items:center; justify-content:center;">
-        <div style="width:100%; max-width:1100px; display:flex; gap:48px;">
+    <div class="categorias-bg">
+        <div class="categorias-container">
             <form id="formCategoria" method="POST"
                 action="{{ isset($editCategoria) ? route('categorias.update', $editCategoria->id) : route('categorias.store') }}"
-                style="flex:1; background:#292929; border-radius:12px; padding:32px; display:flex; flex-direction:column; gap:20px;">
+                class="categorias-form">
                 @csrf
                 <input type="hidden" name="_method" id="inputMethod" value="POST">
                 <input type="hidden" name="categoria_id" id="categoria_id" value="">
-                <h2 style="font-size:2rem; font-weight:bold; color:#fff; text-align:center; margin-bottom:16px;">Nueva Categoría</h2>
+                <h2 class="categorias-title">Nueva Categoría</h2>
                 <input type="text" name="nombre" id="nombre" placeholder="Nombre de la categoría" value=""
-                    style="padding:10px 16px; border-radius:6px; border:1px solid #444; background:#222; color:#fff;">
-                <div style="display:flex; gap:16px; margin-top:8px;">
-                    <button type="submit" id="btnGuardar"
-                        style="background:#2563eb; color:#fff; font-weight:500; border:none; border-radius:6px; padding:10px 32px; cursor:pointer;">Guardar</button>
+                    class="categorias-input">
+                <div class="categorias-actions">
+                    <button type="submit" id="btnGuardar" class="categorias-btn">Guardar</button>
                     <button type="button" id="btnLimpiar"
-                        style="background:#555; color:#fff; font-weight:500; border:none; border-radius:6px; padding:10px 32px; cursor:pointer;">Limpiar</button>
+                        class="categorias-btn categorias-btn-secondary">Limpiar</button>
                 </div>
             </form>
-            <div style="flex:2; background:#292929; border-radius:12px; padding:32px; display:flex; flex-direction:column; gap:20px;">
-                <form method="GET" action="{{ route('categorias.index') }}" style="display:flex; gap:16px; margin-bottom:16px;">
-                    <input type="text" name="term" value="{{ request('term') }}" placeholder="Buscar por nombre..."
-                        style="flex:1; padding:10px 16px; border-radius:6px; border:1px solid #444; background:#222; color:#fff;">
-                    <button type="submit"
-                        style="background:#2563eb; color:#fff; font-weight:500; border:none; border-radius:6px; padding:10px 24px; cursor:pointer;">Buscar</button>
-                    <a href="{{ route('categorias.index') }}"
-                        style="background:#555; color:#fff; font-weight:500; border:none; border-radius:6px; padding:10px 24px; text-align:center; text-decoration:none; cursor:pointer;">Listar</a>
+            <div class="categorias-list-container">
+                <form method="GET" action="{{ route('categorias.index') }}" class="categorias-search-form">
+                    <input type="text" name="term" value="{{ request('term') }}"
+                        placeholder="Buscar por nombre..." class="categorias-search-input">
+                    <button type="submit" class="categorias-btn">Buscar</button>
+                    <a href="{{ route('categorias.index') }}" class="categorias-btn categorias-btn-secondary">Listar</a>
                 </form>
-                <div style="overflow-x:auto;">
-                    <table style="width:100%; border-collapse:collapse; background:#222; color:#fff; border-radius:8px; overflow:hidden;">
+                <div class="categorias-table-wrapper">
+                    <table class="categorias-table">
                         <thead>
-                            <tr style="background:#2563eb; color:#fff;">
-                                <th style="padding:12px 8px; text-align:left; font-weight:600;">ID</th>
-                                <th style="padding:12px 8px; text-align:left; font-weight:600;">Nombre</th>
-                                <th style="padding:12px 8px; text-align:left; font-weight:600;"></th>
+                            <tr class="categorias-table-header">
+                                <th class="categorias-table-th">ID</th>
+                                <th class="categorias-table-th">Nombre</th>
+                                <th class="categorias-table-th"></th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse($categorias as $categoria)
-                                <tr style="border-bottom:1px solid #333; background:#222;">
-                                    <td style="padding:10px 8px;">{{ $categoria->id }}</td>
-                                    <td style="padding:10px 8px;">{{ $categoria->nombre }}</td>
-                                    <td style="padding:10px 8px;">
-                                        <div style="display:flex; gap:8px;">
+                                <tr class="categorias-table-row">
+                                    <td class="categorias-table-td">{{ $categoria->id }}</td>
+                                    <td class="categorias-table-td">{{ $categoria->nombre }}</td>
+                                    <td class="categorias-table-td">
+                                        <div class="categorias-table-actions">
                                             <a href="{{ route('categorias.edit', $categoria->id) }}"
-                                                style="background:#2563eb; color:#fff; border-radius:6px; padding:6px 16px; text-decoration:none; font-size:0.95rem;">Editar</a>
-                                            <form method="POST" action="{{ route('categorias.destroy', $categoria->id) }}"
-                                                style="display:inline;"
+                                                class="categorias-btn">Editar</a>
+                                            <form method="POST"
+                                                action="{{ route('categorias.destroy', $categoria->id) }}"
+                                                class="categorias-delete-form"
                                                 onsubmit="return confirm('¿Seguro que deseas eliminar esta categoría?');">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit"
-                                                    style="background:#dc2626; color:#fff; border:none; border-radius:6px; padding:6px 16px; font-size:0.95rem; cursor:pointer;">Eliminar</button>
+                                                <button type="submit" class="categorias-btn-danger">Eliminar</button>
                                             </form>
                                         </div>
                                     </td>
                                 </tr>
                             @empty
-                                <tr>
-                                    <td colspan="3" style="text-align:center; padding:16px; color:#aaa;">No hay categorías registradas.</td>
+                                <tr class="categorias-table-empty">
+                                    <td colspan="3">No hay categorías registradas.</td>
                                 </tr>
                             @endforelse
                         </tbody>
                     </table>
                 </div>
-                <div style="margin-top:24px; text-align:center;">
+                <div class="categorias-pagination">
                     {{ $categorias->links() }}
                 </div>
             </div>
         </div>
     </div>
 </x-layouts.app>
+@if (session('error'))
+    <div class="categorias-error">
+        {{ session('error') }}
+    </div>
+@endif
 <script src="{{ asset('resources/js/categorias.js') }}"></script>

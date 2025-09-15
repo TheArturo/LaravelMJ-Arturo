@@ -17,11 +17,12 @@
             <flux:navlist.group :heading="__('Platform')" class="grid">
                 <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')"
                     wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
-                <flux:navlist.item icon="plus" :href="route('ventas.create')" wire:navigate>New Venta
+                <flux:navlist.item icon="plus" :href="route('ventas.index')" wire:navigate>Nueva Venta
+                </flux:navlist.item>
+                <flux:navlist.item icon="folder" :href="route('historial_ventas.index')" wire:navigate>Ventas
                 </flux:navlist.item>
                 <flux:navlist.item icon="users" :href="route('clientes.index')" wire:navigate>Clientes
                 </flux:navlist.item>
-                <flux:navlist.item icon="folder" :href="route('ventas.index')" wire:navigate>Ventas</flux:navlist.item>
                 <flux:navlist.item icon="users" :href="route('usuarios.index')" wire:navigate>Usuarios
                 </flux:navlist.item>
                 <flux:navlist.item icon="folder" :href="route('productos.index')" wire:navigate>Productos

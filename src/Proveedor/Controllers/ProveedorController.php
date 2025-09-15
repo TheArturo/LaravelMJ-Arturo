@@ -43,8 +43,11 @@ class ProveedorController
 
     public function destroy($id)
     {
-        $this->repo->delete($id);
-        return redirect()->route('proveedores.index');
+        $result = $this->repo->delete($id);
+        if ($result === false) {
+            return redirect()->route('proveedores.index')->with('error', session('error'));
+        }
+        return redirect()->route('proveedores.index')->with('success', 'Proveedor eliminado correctamente');
     }
 
     public function show($id)

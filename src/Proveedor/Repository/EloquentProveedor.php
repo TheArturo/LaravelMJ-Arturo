@@ -37,7 +37,11 @@ class EloquentProveedor
     public function delete($id)
     {
         $proveedor = Proveedor::findOrFail($id);
-        $proveedor->delete();
+        if ($proveedor->productos()->count() > 0) {
+            session()->flash('error', 'No se puede eliminar el proveedor porque está asociado a productos existentes.');
+            return false;
+        }
+        return $proveedor->delete();
     }
 
     public function search($term)

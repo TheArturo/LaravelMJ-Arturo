@@ -41,4 +41,19 @@ class ProductoController extends Controller
         $proveedores = Proveedor::all();
         return view('modulos.productos.edit', compact('producto', 'categorias', 'proveedores'));
     }
+
+    public function update(Request $request, $id)
+    {
+        $data = $request->validate([
+            'codigo' => 'required|string|max:20|unique:productos,codigo,' . $id,
+            'nombre' => 'required|string',
+            'precio' => 'required|numeric',
+            'stock' => 'required|integer',
+            'categoria_id' => 'nullable|exists:categorias,id',
+            'proveedor_id' => 'nullable|exists:proveedores,id',
+        ]);
+        $producto = Producto::findOrFail($id);
+        $producto->update($data);
+        return redirect()->route('productos.index')->with('success', 'Producto actualizado correctamente');
+    }
 }

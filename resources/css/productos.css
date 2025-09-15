@@ -1,0 +1,252 @@
+/* ===== Scope Productos ===== */
+.producto-index-bg {
+    padding: 24px;
+    background: #f3f4f6;
+    min-height: 100vh;
+}
+
+.producto-index-bg * {
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+}
+
+/* ===== Paleta ===== */
+:root {
+    --card: #fff;
+    --ink: #111827;
+    --sub: #6b7280;
+    --border: #e5e7eb;
+    --shadow: 0 8px 24px rgba(0, 0, 0, .08);
+    --radius: 18px;
+    --gap: 22px;
+    --header: #0f172a;
+    /* Encabezado tabla (oscuro) */
+
+    --btn-green: #16a34a;
+    /* Guardar */
+    --btn-red: #ef4444;
+    /* Limpiar / Eliminar */
+    --btn-blue: #2563eb;
+    /* Editar */
+    --btn-search: #0b1220;
+    /* Buscar (azul oscuro) */
+    --btn-list: #4b5563;
+    /* Listar (plomo oscuro) */
+}
+
+/* ====== Layout general ====== */
+.producto-index-container {
+    max-width: 1180px;
+    width: 100%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 420px 1fr;
+    gap: var(--gap);
+    align-items: start;
+}
+
+/* ===== Formulario ===== */
+.producto-index-form {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    color: var(--ink);
+}
+
+.producto-index-title {
+    margin: 0 0 14px 0;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+    color: var(--ink);
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 10px;
+}
+
+.producto-index-input,
+.producto-index-select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: #fff;
+    color: var(--ink);
+    transition: border-color .15s, box-shadow .15s;
+}
+
+.producto-index-input:focus,
+.producto-index-select:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, .16);
+}
+
+/* Botones formulario */
+.producto-index-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.producto-index-btn,
+.producto-index-cancel {
+    border: 0;
+    color: #fff;
+    font-weight: 700;
+    padding: 10px 14px;
+    border-radius: 12px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform .06s, opacity .2s;
+}
+
+.producto-index-btn {
+    background: var(--btn-green);
+}
+
+.producto-index-cancel {
+    background: var(--btn-red);
+}
+
+.producto-index-btn:hover,
+.producto-index-cancel:hover {
+    transform: translateY(-1px);
+}
+
+/* ===== Listado ===== */
+.producto-index-list {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    padding: 12px 12px 8px;
+}
+
+/* Buscador */
+.producto-index-search {
+    display: flex;
+    gap: 10px;
+    padding: 6px 4px 10px;
+}
+
+.producto-index-search .producto-index-input {
+    flex: 1;
+}
+
+.producto-index-btn-search {
+    background: var(--btn-search) !important;
+    color: #fff;
+    border: 0;
+    border-radius: 12px;
+    padding: 10px 14px;
+    font-weight: 700;
+}
+
+.producto-index-btn-list {
+    background: var(--btn-list) !important;
+    color: #fff;
+    border: 0;
+    text-decoration: none;
+    border-radius: 12px;
+    padding: 10px 14px;
+    font-weight: 700;
+}
+
+/* ===== Tabla ===== */
+.producto-index-table {
+    width: 100%;
+    border-collapse: collapse !important;
+    border-spacing: 0 !important;
+    color: var(--ink);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.producto-index-table thead {
+    background: var(--header);
+    color: #fff;
+}
+
+.producto-index-table thead th {
+    padding: 12px 10px;
+    font-size: 14px;
+    text-align: left;
+    font-weight: 800;
+    border: 0;
+}
+
+.producto-index-table thead th:first-child {
+    border-top-left-radius: 12px;
+}
+
+.producto-index-table thead th:last-child {
+    border-top-right-radius: 12px;
+}
+
+.producto-index-tr td {
+    padding: 14px 10px;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+}
+
+.producto-index-tr:hover {
+    background: #f9fafb;
+}
+
+/* Acciones fila */
+.producto-index-actions-table {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.producto-index-btn-edit {
+    background: var(--btn-blue) !important;
+    color: #fff;
+    border: 0;
+    border-radius: 14px;
+    padding: 8px 14px;
+    font-weight: 800;
+}
+
+.producto-index-btn-delete {
+    background: var(--btn-red) !important;
+    color: #fff;
+    border: 0;
+    border-radius: 14px;
+    padding: 8px 14px;
+    font-weight: 800;
+}
+
+.producto-index-form-delete {
+    display: inline;
+}
+
+.producto-index-pagination {
+    padding: 10px 6px 14px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width:1100px) {
+    .producto-index-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width:640px) {
+    .producto-index-actions-table {
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+    .producto-index-search {
+        flex-direction: column;
+    }
+}

@@ -39,7 +39,11 @@ class EloquentCategoria
     public function delete($id)
     {
         $categoria = Categoria::findOrFail($id);
-        $categoria->delete();
+        if ($categoria->productos()->count() > 0) {
+            session()->flash('error', 'No se puede eliminar la categoría porque está asociada a productos existentes.');
+            return false;
+        }
+        return $categoria->delete();
     }
 
     public function search($term)

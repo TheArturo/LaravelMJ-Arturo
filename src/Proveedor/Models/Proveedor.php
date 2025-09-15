@@ -14,4 +14,9 @@ class Proveedor extends Model
         'direccion',
         'razon_social',
     ];
+
+    public function productos()
+    {
+        return $this->hasMany(\Src\Producto\Models\Producto::class, 'proveedor_id');
+    }
 }

@@ -1,0 +1,126 @@
+/* ===== Historial de Ventas ===== */
+
+/* Fondo claro solo en esta vista (este archivo se carga solo aquí) */
+html,
+body {
+    background: #f3f4f6;
+}
+
+/* Paleta */
+:root {
+    --card: #fff;
+    --ink: #111827;
+    --sub: #6b7280;
+    --border: #e5e7eb;
+    --shadow: 0 8px 24px rgba(0, 0, 0, .08);
+    --radius: 18px;
+    --header: #0f172a;
+    /* cabecera de tabla (azul muy oscuro) */
+    --btn-blue: #2563eb;
+    /* azul para “Ver detalle” */
+}
+
+/* Contenedor principal */
+.container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 24px 0 36px;
+    color: var(--ink);
+}
+
+/* Título */
+.container>h2 {
+    margin: 0 0 14px 0;
+    font-size: 22px;
+    font-weight: 800;
+    text-align: center;
+    color: var(--ink);
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 14px 16px;
+}
+
+/* Tabla */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    /* cabecera continua */
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    /* respeta esquinas redondeadas */
+    box-shadow: var(--shadow);
+    color: var(--ink);
+}
+
+.table thead {
+    background: var(--header);
+    color: #fff;
+}
+
+.table thead th {
+    padding: 12px 10px;
+    text-align: left;
+    font-weight: 800;
+    font-size: 14px;
+    border: 0;
+}
+
+.table tbody td {
+    padding: 14px 10px;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+}
+
+.table tbody tr:hover {
+    background: #f9fafb;
+}
+
+/* Botón “Ver detalle” */
+.table a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    background: var(--btn-blue);
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 12px;
+    font-weight: 700;
+    transition: transform .06s ease, opacity .2s ease;
+    border: 0;
+    /* evita bordes heredados */
+}
+
+.table a:hover {
+    transform: translateY(-1px);
+}
+
+/* Ajustes responsivos */
+@media (max-width: 640px) {
+    .table thead {
+        display: none;
+    }
+
+    /* tabla tipo “stacked” en móvil */
+    .table tbody tr {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px 12px;
+        padding: 10px 12px;
+    }
+
+    .table tbody td {
+        border: 0;
+        padding: 6px 0;
+    }
+
+    .table tbody td:last-child {
+        grid-column: 1 / -1;
+        /* acciones abajo a lo ancho */
+        padding-top: 6px;
+    }
+}

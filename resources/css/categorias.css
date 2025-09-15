@@ -1,0 +1,273 @@
+/* ===== Scope Categorías ===== */
+.categorias-bg {
+	padding: 24px;
+	background: #f3f4f6;
+	min-height: 100vh;
+	/* sin “flotar” negro */
+}
+
+.categorias-bg * {
+	box-sizing: border-box;
+	font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+}
+
+/* ===== Paleta ===== */
+:root {
+	--card: #fff;
+	--ink: #111827;
+	--sub: #6b7280;
+	--border: #e5e7eb;
+	--shadow: 0 8px 24px rgba(0, 0, 0, .08);
+	--radius: 18px;
+	--gap: 22px;
+	--header: #0f172a;
+	/* thead oscuro */
+	--btn-green: #16a34a;
+	/* Guardar */
+	--btn-red: #ef4444;
+	/* Limpiar / Eliminar */
+	--btn-blue: #2563eb;
+	/* Editar */
+	--btn-search: #0b1220;
+	/* Buscar (azul oscuro) */
+	--btn-list: #4b5563;
+	/* Listar (plomo oscuro) */
+}
+
+/* ===== Layout ===== */
+.categorias-container {
+	max-width: 1180px;
+	width: 100%;
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: 380px 1fr;
+	gap: var(--gap);
+	align-items: start;
+}
+
+/* ===== Formulario ===== */
+.categorias-form {
+	background: var(--card);
+	border: 1px solid var(--border);
+	border-radius: 20px;
+	box-shadow: var(--shadow);
+	padding: 18px;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	color: var(--ink);
+}
+
+.categorias-title {
+	margin: 0 0 14px 0;
+	font-size: 20px;
+	font-weight: 700;
+	text-align: center;
+	color: var(--ink);
+	border-bottom: 2px solid var(--border);
+	padding-bottom: 10px;
+}
+
+.categorias-input {
+	width: 100%;
+	padding: 12px 14px;
+	border: 1px solid var(--border);
+	border-radius: 12px;
+	background: #fff;
+	color: var(--ink);
+	transition: border-color .15s, box-shadow .15s;
+}
+
+.categorias-input:focus {
+	border-color: #2563eb;
+	box-shadow: 0 0 0 3px rgba(37, 99, 235, .16);
+}
+
+/* Botones form */
+.categorias-actions {
+	display: flex;
+	gap: 12px;
+}
+
+.categorias-btn,
+.categorias-btn-secondary,
+.categorias-btn-danger {
+	border: 0;
+	border-radius: 12px;
+	padding: 10px 14px;
+	font-weight: 700;
+	color: #fff;
+	cursor: pointer;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	transition: transform .06s, opacity .2s;
+}
+
+.categorias-btn {
+	background: var(--btn-green);
+}
+
+/* Guardar */
+.categorias-btn-secondary {
+	background: var(--btn-red);
+}
+
+/* Limpiar */
+.categorias-btn:hover,
+.categorias-btn-secondary:hover,
+.categorias-btn-danger:hover {
+	transform: translateY(-1px);
+}
+
+/* ===== Listado ===== */
+.categorias-list-container {
+	background: var(--card);
+	border: 1px solid var(--border);
+	border-radius: 20px;
+	box-shadow: var(--shadow);
+	padding: 12px 12px 8px;
+}
+
+/* Buscador */
+.categorias-search-form {
+	display: flex;
+	gap: 10px;
+	padding: 6px 4px 10px;
+}
+
+.categorias-search-input {
+	flex: 1;
+	padding: 12px 14px;
+	border: 1px solid var(--border);
+	border-radius: 12px;
+	background: #fff;
+	color: var(--ink);
+}
+
+.categorias-search-input:focus {
+	border-color: #2563eb;
+	box-shadow: 0 0 0 3px rgba(37, 99, 235, .16);
+}
+
+.categorias-search-form .categorias-btn {
+	background: var(--btn-search) !important;
+}
+
+/* Buscar */
+.categorias-search-form .categorias-btn-secondary {
+	background: var(--btn-list) !important;
+	text-decoration: none;
+	/* Listar */
+}
+
+/* ===== Tabla ===== */
+.categorias-table-wrapper {
+	padding: 14px;
+}
+
+.categorias-table {
+	width: 100%;
+	border-collapse: collapse !important;
+	border-spacing: 0 !important;
+	color: var(--ink);
+	border: 1px solid var(--border);
+	border-radius: 14px;
+	overflow: hidden;
+	box-shadow: var(--shadow);
+}
+
+.categorias-table thead {
+	background: var(--header);
+	color: #fff;
+}
+
+.categorias-table thead th {
+	padding: 12px 10px;
+	font-size: 14px;
+	text-align: left;
+	font-weight: 800;
+	border: 0;
+}
+
+.categorias-table thead th:first-child {
+	border-top-left-radius: 12px;
+}
+
+.categorias-table thead th:last-child {
+	border-top-right-radius: 12px;
+}
+
+.categorias-table-row td {
+	padding: 14px 10px;
+	border-bottom: 1px solid var(--border);
+	font-size: 14px;
+}
+
+.categorias-table-row:hover {
+	background: #f9fafb;
+}
+
+/* Acciones fila */
+.categorias-table-actions {
+	display: flex;
+	gap: 10px;
+	justify-content: flex-end;
+}
+
+.categorias-table-actions .categorias-btn {
+	background: var(--btn-blue) !important;
+}
+
+/* Editar azul */
+.categorias-table-actions .categorias-btn-danger {
+	background: var(--btn-red) !important;
+	border: 0;
+	border-radius: 14px;
+	padding: 8px 14px;
+	font-weight: 800;
+}
+
+.categorias-delete-form {
+	display: inline;
+}
+
+/* Varios */
+.categorias-table-empty td {
+	text-align: center;
+	padding: 18px;
+	color: var(--sub);
+}
+
+.categorias-pagination {
+	padding: 10px 6px 14px;
+}
+
+.categorias-error {
+	max-width: 1180px;
+	margin: 16px auto;
+	background: #fee2e2;
+	color: #b91c1c;
+	border: 1px solid #fecaca;
+	padding: 12px 14px;
+	border-radius: 12px;
+	font-size: 14px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width:1100px) {
+	.categorias-container {
+		grid-template-columns: 1fr;
+	}
+}
+
+@media (max-width:640px) {
+	.categorias-search-form {
+		flex-direction: column;
+	}
+
+	.categorias-table-actions {
+		flex-direction: column;
+		align-items: flex-end;
+	}
+}

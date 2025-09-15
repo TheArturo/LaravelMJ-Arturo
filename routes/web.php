@@ -9,6 +9,7 @@ Route::get('/', function () {
 Route::view('dashboard', 'dashboard')->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('historial-ventas/{id}', [\Src\Ventas\Controllers\VentaController::class, 'show'])->name('historial_ventas.show');
     // Configuración
     Route::redirect('settings', 'settings/profile');
     Volt::route('settings/profile', 'settings.profile')->name('settings.profile');
@@ -17,7 +18,11 @@ Route::middleware(['auth'])->group(function () {
 
     // Ventas
     Route::view('ventas', 'modulos.ventas.index')->name('ventas.index');
-    Route::view('ventas/create', 'modulos.ventas.index')->name('ventas.create');
+    Route::get('ventas/historial', [\Src\Ventas\Controllers\VentaController::class, 'index'])->name('ventas.historial');
+    Route::post('ventas', [\Src\Ventas\Controllers\VentaController::class, 'store'])->name('ventas.store');
+    Route::get('historial-ventas', [\Src\Ventas\Controllers\VentaController::class, 'index'])->name('historial_ventas.index');
+    Route::get('ventas/buscar-cliente', [\Src\Ventas\Controllers\VentaController::class, 'buscarCliente'])->name('ventas.buscarCliente');
+    Route::get('ventas/buscar-producto', [\Src\Ventas\Controllers\VentaController::class, 'buscarProducto'])->name('ventas.buscarProducto');
 
     // Clientes
     Route::resource('clientes', \Src\Cliente\Controllers\ClienteController::class);

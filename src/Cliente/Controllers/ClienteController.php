@@ -31,12 +31,22 @@ class ClienteController extends \App\Http\Controllers\Controller
 
     public function store(Request $request)
     {
+        $data = $request->validate([
+            // ...otros campos...
+            'celular' => ['required', 'digits:9'],
+        ]);
+
         $this->eloquent->store($request);
         return redirect()->route('clientes.index');
     }
 
     public function update(Request $request, $id)
     {
+        $data = $request->validate([
+            // ...otros campos...
+            'celular' => ['required', 'digits:9'],
+        ]);
+
         $this->eloquent->update($request, $id);
         return redirect()->route('clientes.index');
     }
