@@ -7,11 +7,11 @@ return new class extends Migration {
     public function up() {
         Schema::create('clientes', function (Blueprint $table) {
             $table->id();
-            $table->string('dni', 15)->unique();
+            $table->integer('dni')->unique();
             $table->string('nombre');
             $table->string('apellido');
             $table->string('direccion')->nullable();
-            $table->string('celular', 20)->nullable();
+            $table->integer('celular')->nullable();
             $table->timestamps();
         });
     }

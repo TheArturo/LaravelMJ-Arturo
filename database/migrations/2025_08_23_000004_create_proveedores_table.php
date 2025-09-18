@@ -7,9 +7,9 @@ return new class extends Migration {
     public function up() {
         Schema::create('proveedores', function (Blueprint $table) {
             $table->id();
-            $table->string('ruc', 20)->unique();
+            $table->integer('ruc')->unique();
             $table->string('nombres');
-            $table->string('telefono', 20)->nullable();
+            $table->integer('telefono')->nullable();
             $table->string('direccion')->nullable();
             $table->string('razon_social')->nullable();
             $table->timestamps();
