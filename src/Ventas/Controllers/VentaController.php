@@ -1,4 +1,5 @@
 <?php
+
 namespace Src\Ventas\Controllers;
 
 use Illuminate\Http\Request;
@@ -28,22 +29,12 @@ class VentaController extends Controller
     }
     public function store(Request $request)
     {
-        // Permitir JSON (AJAX) y formulario clásico
         $isJson = $request->expectsJson() || $request->isJson();
         $dni = $request->input('dni');
         $cliente = \Src\Cliente\Models\Cliente::where('dni', $dni)->first();
         if (!$cliente) {
             if ($isJson) return response()->json(['success' => false, 'error' => 'Cliente no encontrado'], 422);
             return redirect()->back()->with('error', 'Cliente no encontrado');
-        }
-        // Evitar duplicados: buscar venta igual
-        $existe = \Src\Ventas\Models\Venta::where('cliente_id', $cliente->id)
-            ->where('fecha', date('Y-m-d'))
-            ->where('hora', date('H:i:s'))
-            ->first();
-        if ($existe) {
-            if ($isJson) return response()->json(['success' => false, 'error' => 'Venta duplicada'], 409);
-            return redirect()->back()->with('error', 'Ya existe una venta igual registrada');
         }
         $carrito = $request->input('carrito');
         if (is_string($carrito)) {
@@ -57,14 +48,24 @@ class VentaController extends Controller
         foreach ($carrito as $item) {
             $total += $item['precio'] * $item['cantidad'];
         }
-    $venta = new \Src\Ventas\Models\Venta();
-    $venta->cliente_id = $cliente->id;
-    $venta->fecha = date('Y-m-d');
-    $venta->hora = date('H:i:s');
-    $venta->cantidad_total = array_sum(array_column($carrito, 'cantidad'));
-    $venta->total = $total;
-    $venta->usuario_id = Auth::id();
-    $venta->save();
+        $cantidad_total = array_sum(array_column($carrito, 'cantidad'));
+        $existe = \Src\Ventas\Models\Venta::where('cliente_id', $cliente->id)
+            ->where('total', $total)
+            ->where('cantidad_total', $cantidad_total)
+            ->where('created_at', '>=', now()->subSeconds(10))
+            ->first();
+        if ($existe) {
+            if ($isJson) return response()->json(['success' => false, 'error' => 'Venta duplicada'], 409);
+            return redirect()->back()->with('error', 'Ya existe una venta igual registrada recientemente');
+        }
+        $venta = new \Src\Ventas\Models\Venta();
+        $venta->cliente_id = $cliente->id;
+        $venta->fecha = date('Y-m-d');
+        $venta->hora = date('H:i:s');
+        $venta->cantidad_total = $cantidad_total;
+        $venta->total = $total;
+        $venta->usuario_id = Auth::id();
+        $venta->save();
         foreach ($carrito as $item) {
             $producto = \Src\Producto\Models\Producto::where('codigo', $item['codigo'])->first();
             if ($producto) {
@@ -105,8 +106,8 @@ class VentaController extends Controller
 
     public function buscarProducto(Request $request)
     {
-    $codigo = trim($request->query('codigo'));
-    $producto = \Src\Producto\Models\Producto::where('codigo', $codigo)->first();
+        $codigo = trim($request->query('codigo'));
+        $producto = \Src\Producto\Models\Producto::where('codigo', $codigo)->first();
         if ($producto) {
             return response()->json([
                 'success' => true,
