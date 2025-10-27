@@ -43,7 +43,7 @@
 
 8. Ejecuta las migraciones y seeders:
 	```
-	php artisan migrate:fresh --seed
+	php artisan migrate --seed
 	```
 
 9. Inicia el servidor de desarrollo:
