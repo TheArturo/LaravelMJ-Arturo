@@ -10,43 +10,38 @@
 	git clone **link**
 	```
 
-2. Cambia al directorio del proyecto:
-	```
-	cd Laravel-libraray-management-system
-	```
-
-3. Instala las dependencias de PHP:
+2. Instala las dependencias de PHP:
 	```
 	composer install
 	```
 
-4. Instala las dependencias de JavaScript:
+3. Instala las dependencias de JavaScript:
 	```
 	npm install
 	```
 
-5. Compila los assets:
+4. Compila los assets:
 	```
 	npm run dev
 	```
 
-6. Crea el archivo .env:
+5. Crea el archivo .env:
 	```
 	cp .env.example .env   # Unix
 	copy .env.example .env # Windows
 	```
 
-7. Genera la clave de la aplicación:
+6. Genera la clave de la aplicación:
 	```
 	php artisan key:generate
 	```
 
-8. Ejecuta las migraciones y seeders:
+7. Ejecuta las migraciones y seeders:
 	```
-	php artisan migrate:fresh --seed
+	php artisan migrate --seed
 	```
 
-9. Inicia el servidor de desarrollo:
+8. Inicia el servidor de desarrollo:
 	```
 	php artisan serve
 	```
