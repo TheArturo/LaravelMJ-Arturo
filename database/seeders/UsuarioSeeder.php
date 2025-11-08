@@ -12,11 +12,18 @@ class UsuarioSeeder extends Seeder
     {
         $faker = Faker::create('es_PE');
         for ($i = 0; $i < 10; $i++) {
-            User::create([
+            $user = User::create([
                 'name' => $faker->name,
                 'email' => $faker->unique()->safeEmail,
                 'password' => Hash::make('password'),
             ]);
+            // assign role: first user admin, others cajero by default
+            if ($i === 0) {
+                $user->role_id = 1;
+            } else {
+                $user->role_id = 2;
+            }
+            $user->save();
         }
     }
 }

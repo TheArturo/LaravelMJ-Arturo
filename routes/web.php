@@ -28,20 +28,20 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('clientes', \Src\Cliente\Controllers\ClienteController::class);
 
     // Proveedores
-    Route::resource('proveedores', \Src\Proveedor\Controllers\ProveedorController::class);
+    Route::resource('proveedores', \Src\Proveedor\Controllers\ProveedorController::class)->middleware('role:1');
     Route::get('proveedores/search', [\Src\Proveedor\Controllers\ProveedorController::class, 'search'])->name('proveedores.search');
 
     // Productos
     Route::resource('productos', \Src\Producto\Controllers\ProductoController::class);
 
     // Categorías
-    Route::resource('categorias', \Src\Categoria\Controllers\CategoriaController::class);
+    Route::resource('categorias', \Src\Categoria\Controllers\CategoriaController::class)->middleware('role:1');
 
     // Usuarios
-    Route::view('usuarios', 'modulos.usuarios.index')->name('usuarios.index');
+    Route::resource('usuarios', \Src\Usuarios\Controllers\UsuarioController::class)->middleware('role:1');
 
     // Configuración
-    Route::view('configuracion', 'modulos.configuracion.index')->name('configuracion.index');
+    Route::view('configuracion', 'modulos.configuracion.index')->name('configuracion.index')->middleware('role:1');
 });
 
 require __DIR__ . '/auth.php';

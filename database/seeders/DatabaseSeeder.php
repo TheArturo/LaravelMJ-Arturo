@@ -14,6 +14,8 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
+            // Roles deben crearse antes que usuarios para poder asignar role_id
+            RolesSeeder::class,
             ClienteSeeder::class,
             UsuarioSeeder::class,
             ProductoSeeder::class,

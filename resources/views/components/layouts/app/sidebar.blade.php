@@ -14,26 +14,31 @@
         </a>
 
         <flux:navlist variant="outline">
-            <flux:navlist.group :heading="__('Platform')" class="grid">
-                <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')"
-                    wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
-                <flux:navlist.item icon="plus" :href="route('ventas.index')" wire:navigate>Nueva Venta
-                </flux:navlist.item>
-                <flux:navlist.item icon="folder" :href="route('historial_ventas.index')" wire:navigate>Ventas
-                </flux:navlist.item>
-                <flux:navlist.item icon="users" :href="route('clientes.index')" wire:navigate>Clientes
-                </flux:navlist.item>
-                <flux:navlist.item icon="users" :href="route('usuarios.index')" wire:navigate>Usuarios
-                </flux:navlist.item>
-                <flux:navlist.item icon="folder" :href="route('productos.index')" wire:navigate>Productos
-                </flux:navlist.item>
-                <flux:navlist.item icon="folder" :href="route('categorias.index')" wire:navigate>Categorías
-                </flux:navlist.item>
-                <flux:navlist.item icon="folder" :href="route('proveedores.index')" wire:navigate>Proveedores
-                </flux:navlist.item>
-                <flux:navlist.item icon="cog" :href="route('configuracion.index')" wire:navigate>Config
-                </flux:navlist.item>
-            </flux:navlist.group>
+            @php $roleId = auth()->check() ? auth()->user()->role_id : null; @endphp
+
+            @if($roleId === 2)
+                {{-- Cajero: mostrar solo dashboard, nueva venta, ventas, clientes y productos --}}
+                <flux:navlist.group :heading="__('Cajero')" class="grid">
+                    <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
+                    <flux:navlist.item icon="plus" :href="route('ventas.index')" wire:navigate>Nueva Venta</flux:navlist.item>
+                    <flux:navlist.item icon="folder" :href="route('historial_ventas.index')" wire:navigate>Ventas</flux:navlist.item>
+                    <flux:navlist.item icon="users" :href="route('clientes.index')" wire:navigate>Clientes</flux:navlist.item>
+                    <flux:navlist.item icon="folder" :href="route('productos.index')" wire:navigate>Productos</flux:navlist.item>
+                </flux:navlist.group>
+            @else
+                {{-- Admin / otros: mostrar todo --}}
+                <flux:navlist.group :heading="__('Administrador')" class="grid">
+                    <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
+                    <flux:navlist.item icon="plus" :href="route('ventas.index')" wire:navigate>Nueva Venta</flux:navlist.item>
+                    <flux:navlist.item icon="folder" :href="route('historial_ventas.index')" wire:navigate>Ventas</flux:navlist.item>
+                    <flux:navlist.item icon="users" :href="route('clientes.index')" wire:navigate>Clientes</flux:navlist.item>
+                    <flux:navlist.item icon="users" :href="route('usuarios.index')" wire:navigate>Usuarios</flux:navlist.item>
+                    <flux:navlist.item icon="folder" :href="route('productos.index')" wire:navigate>Productos</flux:navlist.item>
+                    <flux:navlist.item icon="folder" :href="route('categorias.index')" wire:navigate>Categorías</flux:navlist.item>
+                    <flux:navlist.item icon="folder" :href="route('proveedores.index')" wire:navigate>Proveedores</flux:navlist.item>
+                    <flux:navlist.item icon="cog" :href="route('configuracion.index')" wire:navigate>Config</flux:navlist.item>
+                </flux:navlist.group>
+            @endif
         </flux:navlist>
 
         <flux:spacer />
