@@ -40,7 +40,7 @@
 	width: 100%;
 	margin: 0 auto;
 	display: grid;
-	grid-template-columns: 420px 1fr;
+	grid-template-columns: 1fr;
 	gap: var(--gap);
 	align-items: start;
 }
@@ -167,6 +167,7 @@
 	border: 1px solid var(--border);
 	border-radius: 14px;
 	overflow: hidden;
+	overflow-x: auto;
 	box-shadow: var(--shadow);
 }
 

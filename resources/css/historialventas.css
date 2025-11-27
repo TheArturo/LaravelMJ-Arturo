@@ -6,18 +6,39 @@ body {
     background: #f3f4f6;
 }
 
-/* Paleta */
+/* ===== Paleta ===== */
 :root {
-    --card: #fff;
-    --ink: #111827;
-    --sub: #6b7280;
-    --border: #e5e7eb;
-    --shadow: 0 8px 24px rgba(0, 0, 0, .08);
-    --radius: 18px;
-    --header: #0f172a;
-    /* cabecera de tabla (azul muy oscuro) */
-    --btn-blue: #2563eb;
-    /* azul para “Ver detalle” */
+	--card: #fff;
+	--ink: #111827;
+	--sub: #6b7280;
+	--border: #e5e7eb;
+	--shadow: 0 8px 24px rgba(0, 0, 0, .08);
+	--radius: 18px;
+	--gap: 22px;
+	--header: #0f172a;
+	/* Encabezado tabla (oscuro) */
+
+	--btn-green: #16a34a;
+	/* Guardar */
+	--btn-red: #ef4444;
+	/* Limpiar / Eliminar */
+	--btn-blue: #2563eb;
+	/* Editar */
+	--btn-search: #0b1220;
+	/* Buscar (azul oscuro) */
+	--btn-list: #4b5563;
+	/* Listar (plomo oscuro) */
+}
+
+label {
+    display: block;
+    font-size: 12px;
+    color: var(--sub);
+    margin: 4px 0 4px;
+}
+
+.gap-16{
+    gap: 16px;
 }
 
 /* Contenedor principal */
@@ -97,6 +118,57 @@ body {
 
 .table a:hover {
     transform: translateY(-1px);
+}
+
+.hventas-index-input {
+	width: 100%;
+	padding: 12px 14px;
+	border: 1px solid var(--border);
+	border-radius: 12px;
+	background: #cacaca;
+	color: var(--ink);
+	transition: border-color .15s, box-shadow .15s;
+}
+
+.hventas-index-input:focus {
+	border-color: #2563eb;
+	box-shadow: 0 0 0 3px rgba(37, 99, 235, .16);
+}
+
+.hventas-index-btn,
+.hventas-index-cancel {
+	border: 0;
+	color: #fff;
+	font-weight: 700;
+	padding: 10px 14px;
+	border-radius: 12px;
+	cursor: pointer;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	transition: transform .06s, opacity .2s;
+}
+
+.hventas-index-btn {
+	background: var(--btn-green);
+}
+
+.hventas-index-cancel {
+	background: var(--btn-red);
+}
+
+.hventas-index-btn:hover,
+.hventas-index-cancel:hover {
+	transform: translateY(-1px);
+}
+
+.hventas-index-btn-search {
+	background: var(--btn-search) !important;
+	color: #fff;
+	border: 0;
+	border-radius: 12px;
+	padding: 10px 14px;
+	font-weight: 700;
 }
 
 /* Ajustes responsivos */

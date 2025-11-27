@@ -3,7 +3,7 @@
 <div>
     <h2>Detalle de Venta</h2>
     <table class="table">
-        <tr><th>Cliente</th><td>{{ $venta->cliente->nombre ?? '-' }}</td></tr>
+        <tr><th>Cliente</th><td>{{ $venta->cliente ?? '-' }}</td></tr>
     <tr><th>Usuario</th><td>{{ $venta->usuario->name ?? '-' }}</td></tr>
         <tr><th>Fecha</th><td>{{ $venta->fecha }}</td></tr>
         <tr><th>Hora</th><td>{{ $venta->hora }}</td></tr>
@@ -15,7 +15,7 @@
         <thead>
             <tr>
                 <th>Código</th>
-                <th>Nombre</th>
+                <th>Nombre del producto</th>
                 <th>Cantidad</th>
                 <th>Precio unitario</th>
                 <th>Subtotal</th>

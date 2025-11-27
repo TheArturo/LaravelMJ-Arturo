@@ -16,8 +16,11 @@ class DetalleVenta extends Model
         'fecha',
         'hora',
         'cantidad',
+        'valor_unitario',
         'precio_unitario',
-        'subtotal'
+        'subtotal',
+        'igv',
+        'total'
     ];
 
     public function producto()

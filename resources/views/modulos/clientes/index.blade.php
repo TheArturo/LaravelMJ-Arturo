@@ -11,20 +11,33 @@
                     @csrf
                     <input type="hidden" name="_method" id="inputMethod" value="POST"> {{-- método --}}
                     <h2 class="cliente-index-title">Nuevo Cliente</h2>
-                    <input type="text" name="dni" id="dni" placeholder="DNI"
-                        value="{{ old('dni', $editCliente->dni ?? '') }}" maxlength="15" inputmode="numeric"
-                        pattern="[0-9]*" oninput="this.value=this.value.replace(/[^0-9]/g,'');"
-                        class="cliente-index-input">
-                    <input type="text" name="nombre" id="nombre" placeholder="Nombre"
-                        value="{{ old('nombre', $editCliente->nombre ?? '') }}" class="cliente-index-input">
-                    <input type="text" name="apellido" id="apellido" placeholder="Apellido"
-                        value="{{ old('apellido', $editCliente->apellido ?? '') }}" class="cliente-index-input">
-                    <input type="text" name="direccion" id="direccion" placeholder="Dirección"
-                        value="{{ old('direccion', $editCliente->direccion ?? '') }}" class="cliente-index-input">
-                    <input type="text" name="celular" id="celular" placeholder="Celular"
-                        value="{{ old('celular', $editCliente->celular ?? '') }}" maxlength="15" inputmode="numeric"
-                        pattern="[0-9]*" oninput="this.value=this.value.replace(/[^0-9]/g,'');"
-                        class="cliente-index-input">
+                    <div class="form-group">
+                        <div class="flex">
+                            <select name="tipo_persona" id="tipo_persona" class="cliente-index-input flex-grow mr-2">
+                                <option value="" disabled selected>Tipo de persona</option>
+                                <option value="NATURAL" {{ (old('tipo_persona', $editCliente->tipo_persona ?? '') == 'NATURAL') ? 'selected' : '' }}>NATURAL</option>
+                                <option value="JURÍDICA" {{ (old('tipo_persona', $editCliente->tipo_persona ?? '') == 'JURÍDICA') ? 'selected' : '' }}>JURÍDICA</option>
+                            </select>
+                            <select name="tipo_documento" id="tipo_documento" class="cliente-index-input flex-grow mr-2">
+                                <option value="" disabled selected>Tipo de documento</option>
+                                <option value="DNI" {{ (old('tipo_documento', $editCliente->tipo_documento ?? '') == 'DNI') ? 'selected' : '' }}>DNI</option>
+                                <option value="RUC" {{ (old('tipo_documento', $editCliente->tipo_documento ?? '') == 'RUC') ? 'selected' : '' }}>RUC</option>
+                            </select>
+                            <input type="text" name="numero_documento" id="numero_documento" placeholder="Número de documento" value="{{ old('numero_documento', $editCliente->numero_documento ?? '') }}" maxlength="15" inputmode="numeric" pattern="[0-9]*" oninput="this.value=this.value.replace(/[^0-9]/g,'');" class="cliente-index-input flex-grow">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="flex">
+                            <input type="text" name="apellidos_razon_social" id="apellidos_razon_social" placeholder="Apellidos o Razón Social" value="{{ old('apellidos_razon_social', $editCliente->apellidos_razon_social ?? '') }}" class="cliente-index-input flex-grow mr-2">
+                            <input type="text" name="nombres" id="nombres" placeholder="Nombres" value="{{ old('nombres', $editCliente->nombres ?? '') }}" class="cliente-index-input flex-grow mr-2">
+                            <input type="text" name="celular" id="celular" placeholder="Celular" value="{{ old('celular', $editCliente->celular ?? '') }}" maxlength="15" inputmode="numeric" pattern="[0-9]*" oninput="this.value=this.value.replace(/[^0-9]/g,'');" class="cliente-index-input flex-grow">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="flex">
+                            <input type="text" name="direccion" id="direccion" placeholder="Dirección" value="{{ old('direccion', $editCliente->direccion ?? '') }}" class="cliente-index-input">
+                        </div>
+                    </div>
                     @if ($errors->has('celular'))
                         <div class="cliente-index-error">{{ $errors->first('celular') }}</div>
                     @endif
@@ -52,9 +65,11 @@
                             <thead>
                                 <tr class="cliente-index-table-header">
                                     <th class="cliente-index-th">ID</th>
-                                    <th class="cliente-index-th">DNI</th>
-                                    <th class="cliente-index-th">Nombre</th>
-                                    <th class="cliente-index-th">Apellido</th>
+                                    <th class="cliente-index-th">Tipo de persona</th>
+                                    <th class="cliente-index-th">Tipo de documento</th>
+                                    <th class="cliente-index-th">Número de documento</th>
+                                    <th class="cliente-index-th">Apellidos o Razón Social</th>
+                                    <th class="cliente-index-th">Nombres</th>
                                     <th class="cliente-index-th">Dirección</th>
                                     <th class="cliente-index-th">Celular</th>
                                     <th class="cliente-index-th"></th>
@@ -64,9 +79,11 @@
                                 @forelse($clientes as $cliente)
                                     <tr class="cliente-index-tr">
                                         <td class="cliente-index-td">{{ $cliente->id }}</td>
-                                        <td class="cliente-index-td">{{ $cliente->dni }}</td>
-                                        <td class="cliente-index-td">{{ $cliente->nombre }}</td>
-                                        <td class="cliente-index-td">{{ $cliente->apellido }}</td>
+                                        <td class="cliente-index-td">{{ $cliente->tipo_persona }}</td>
+                                        <td class="cliente-index-td">{{ $cliente->tipo_documento }}</td>
+                                        <td class="cliente-index-td">{{ $cliente->numero_documento }}</td>
+                                        <td class="cliente-index-td">{{ $cliente->apellidos_razon_social }}</td>
+                                        <td class="cliente-index-td">{{ $cliente->nombres }}</td>
                                         <td class="cliente-index-td">{{ $cliente->direccion }}</td>
                                         <td class="cliente-index-td">{{ $cliente->celular }}</td>
                                         <td class="cliente-index-td">

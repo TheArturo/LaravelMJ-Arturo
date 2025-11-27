@@ -48,11 +48,13 @@ class EloquentClient
     public function search($query)
     {
         return Cliente::where(function ($q) use ($query) {
-            $q->where('nombre', 'like', "$query%")
-                ->orWhere('apellido', 'like', "$query%")
-                ->orWhere('dni', 'like', "$query%")
-                ->orWhere('celular', 'like', "$query%")
+            $q->where('tipo_persona', 'like', "$query%")
+                ->orWhere('tipo_documento', 'like', "$query%")
+                ->orWhere('numero_documento', 'like', "$query%")
+                ->orWhere('apellidos_razon_social', 'like', "$query%")
+                ->orWhere('nombres', 'like', "$query%")
                 ->orWhere('direccion', 'like', "$query%")
+                ->orWhere('celular', 'like', "$query%")
                 ->orWhere('id', 'like', "$query%");
         })->orderByDesc('id')->paginate(10);
     }

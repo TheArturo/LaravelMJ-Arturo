@@ -23,6 +23,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('historial-ventas', [\Src\Ventas\Controllers\VentaController::class, 'index'])->name('historial_ventas.index');
     Route::get('ventas/buscar-cliente', [\Src\Ventas\Controllers\VentaController::class, 'buscarCliente'])->name('ventas.buscarCliente');
     Route::get('ventas/buscar-producto', [\Src\Ventas\Controllers\VentaController::class, 'buscarProducto'])->name('ventas.buscarProducto');
+    Route::get('ventas/buscar-comprobante', [\Src\Ventas\Controllers\VentaController::class, 'buscarComprobante'])->name('ventas.buscarComprobante');
 
     // Clientes
     Route::resource('clientes', \Src\Cliente\Controllers\ClienteController::class);

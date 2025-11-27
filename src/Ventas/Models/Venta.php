@@ -7,7 +7,29 @@ class Venta extends Model
 {
     protected $table = 'ventas';
     protected $fillable = [
-        'cliente_id', 'fecha', 'hora', 'cantidad_total', 'total', 'usuario_id'
+        'id_tipo_documento', 
+        'tipo_documento', 
+        'numero_documento', 
+        'cliente_id', 
+        'cliente', 
+        'direccion', 
+        'id_tipo_comprobante', 
+        'tipo_comprobante', 
+        'serie', 
+        'numero_comprobante', 
+        'medio_pago', 
+        'fecha', 
+        'hora', 
+        'cantidad_total', 
+        'igv', 
+        'sub_total', 
+        'total', 
+        'usuario_id', 
+        'sunat_aceptada', 
+        'sunat_codigo_hash', 
+        'sunat_enlace_pdf', 
+        'sunat_enlace_xml', 
+        'sunat_enlace_cdr'
     ];
 
 

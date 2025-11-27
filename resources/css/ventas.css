@@ -41,6 +41,18 @@ body {
     margin: 0 auto;
 }
 
+/* ventas input */
+
+.ventas-index-input {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    outline: none;
+    background: #fff;
+    transition: border-color .15s ease, box-shadow .15s ease;
+}
+
 /* ====== Botón historial ====== */
 .mb-4 {
     margin-bottom: 16px;
@@ -61,6 +73,16 @@ body {
     transform: translateY(-1px);
 }
 
+.fecha-emision{
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    outline: none;
+    background: #f9fafb;
+    transition: border-color .15s ease, box-shadow .15s ease;
+}
+
 /* ====== Grid superior ====== */
 .ventas-form-3col {
     display: grid;
@@ -68,6 +90,17 @@ body {
     /* Producto más ancho */
     gap: var(--gap);
     align-items: start;
+}
+
+.gap-16{
+    gap: 16px;
+}
+/* Grid clientes */
+.cliente-index-form {
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
 /* Tarjetas */
@@ -80,7 +113,6 @@ body {
 }
 
 .ventas-tarjeta-titulo {
-    margin: 0 0 10px 0;
     font-size: 18px;
     font-weight: 700;
     color: var(--ink);
@@ -154,7 +186,7 @@ button:hover {
 }
 
 .ventas-col-2 .ventas-producto-bloque {
-    flex: 1;
+    flex: 100%;
     min-width: 160px;
     background: #fafafa;
     border: 1px dashed var(--border);
@@ -163,15 +195,6 @@ button:hover {
     display: flex;
     flex-direction: column;
     gap: 6px;
-}
-
-/* Cantidad abajo ocupando todo */
-.ventas-col-2 .ventas-producto-bloque:last-child {
-    flex: 1 1 100%;
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
-    background: #fafafa;
 }
 
 .ventas-col-2 .ventas-producto-bloque:last-child input {
@@ -253,6 +276,38 @@ button:hover {
     font-size: 13px;
     color: #9ca3af;
 }
+
+.loader-venta {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.65);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    color: white;
+    font-size: 18px;
+}
+
+.spinner {
+    border: 6px solid #ffffff;
+    border-top: 6px solid #3498db;
+    border-radius: 50%;
+    width: 65px;
+    height: 65px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 15px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 
 /* ====== Responsive ====== */
 @media (max-width: 1100px) {
