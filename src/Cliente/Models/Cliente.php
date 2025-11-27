@@ -16,4 +16,9 @@ class Cliente extends Model
         'direccion',
         'celular'
     ];
+
+    public function ventas()
+    {
+        return $this->hasMany(\Src\Ventas\Models\Venta::class, 'cliente_id');
+    }
 }

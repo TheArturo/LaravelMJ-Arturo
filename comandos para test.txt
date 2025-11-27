@@ -1,0 +1,9 @@
+1. artisan test
+
+2. php artisan test --filter=CategoriaControllerTest
+
+3. php artisan test --filter=ClienteControllerTest
+
+4. php artisan test --filter=ProductoControllerTest
+
+5. php artisan test --filter=ProveedorControllerTest
